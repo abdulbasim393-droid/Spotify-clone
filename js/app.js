@@ -11,15 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadSongs() {
+    const fragment = document.createDocumentFragment();
 
     songs.forEach(song => {
-
         const card = document.createElement("div");
-
         card.classList.add("card");
 
         card.innerHTML = `
-            <img src="${song.cover}" alt="${song.title}">
+            <img src="${song.cover}" alt="${song.title}" loading="lazy">
             <h4>${song.title}</h4>
             <p>${song.artist}</p>
         `;
@@ -28,12 +27,13 @@ function loadSongs() {
             playSong(song);
         });
 
-        songContainer.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    songContainer.appendChild(fragment);
 }
 
 loadSongs();
-
 
 const overlay =
     document.getElementById("playerOverlay");
